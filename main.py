@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -26,6 +27,7 @@ def main():
     player = Player(x, y)
 
 
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
     while True:
@@ -39,6 +41,10 @@ def main():
         for obj in drawable:
             obj.draw(screen)
         updatable.update(dt)
+        for obj in asteroids:
+            if player.collision(obj):
+                print("Game Over!")
+                sys.exit()
         pygame.display.flip()
 
 if __name__ == "__main__":
