@@ -28,9 +28,6 @@ def main():
 
     asteroid_field = AsteroidField()
     player = Player(x, y)
-
-
-
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
     while True:
@@ -48,6 +45,11 @@ def main():
             if player.collision(obj):
                 print("Game Over!")
                 sys.exit()
+            for bullet in projectile:
+                if bullet.collision(obj):
+                    pygame.sprite.Sprite.kill(bullet)
+                    pygame.sprite.Sprite.kill(obj)
+
         pygame.display.flip()
 
 if __name__ == "__main__":
