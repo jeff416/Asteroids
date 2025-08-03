@@ -48,7 +48,7 @@ def main():
             for bullet in projectile:
                 if bullet.collision(obj):
                     pygame.sprite.Sprite.kill(bullet)
-                    pygame.sprite.Sprite.kill(obj)
+                    Asteroid.split(obj)
 
         pygame.display.flip()
 
