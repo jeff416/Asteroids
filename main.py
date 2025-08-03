@@ -29,6 +29,7 @@ def main():
     asteroid_field = AsteroidField()
     player = Player(x, y)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    score = 0
     
     while True:
         
@@ -43,12 +44,13 @@ def main():
         updatable.update(dt)
         for obj in asteroids:
             if player.collision(obj):
-                print("Game Over!")
+                print(f"Game Over! Your score was {score}")
                 sys.exit()
             for bullet in projectile:
                 if bullet.collision(obj):
                     pygame.sprite.Sprite.kill(bullet)
                     Asteroid.split(obj)
+                    score += 1
 
         pygame.display.flip()
 
